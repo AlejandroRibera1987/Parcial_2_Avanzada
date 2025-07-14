@@ -131,4 +131,14 @@ public class MascotaDAO extends BaseDAO {
         }
         throw new SQLException("Especie de mascota no reconocida: " + especie);
     }
+
+    public boolean marcarComoDisponible(int idMascota) throws SQLException {
+        String sql = "UPDATE mascotas SET disponible = TRUE WHERE id_mascota = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idMascota);
+            return stmt.executeUpdate() > 0;
+        }
+    }
 }

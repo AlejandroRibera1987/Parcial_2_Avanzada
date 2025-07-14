@@ -5,6 +5,7 @@ import ar.edu.davinci.modelo.entidades.*;
 import ar.edu.davinci.modelo.managers.EmpleadoManager;
 import ar.edu.davinci.vista.adopcion.AdopcionView;
 import ar.edu.davinci.vista.login.LoginView;
+import ar.edu.davinci.vista.adopcion.HistorialAdopcionesView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -29,12 +30,28 @@ public class AdopcionController {
         mostrarEmpleadoLogueado();
     }
 
+    private void abrirHistorialAdopciones() {
+        try {
+            HistorialAdopcionesView historialView = new HistorialAdopcionesView();
+            new HistorialAdopcionesController(historialView);
+            historialView.setVisible(true);
+        } catch (Exception e) {
+            adopcionView.mostrarMensaje(
+                    "Error al abrir el historial de adopciones: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            e.printStackTrace();
+        }
+    }
+
     private void initEventListeners() {
         adopcionView.getBtnProcesarAdopcion().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 procesarAdopcion();
             }
+
         });
 
         adopcionView.getBtnCerrarSesion().addActionListener(new ActionListener() {
@@ -57,6 +74,14 @@ public class AdopcionController {
                 cargarMascotasDisponibles();
             }
         });
+
+        adopcionView.getBtnHistorial().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirHistorialAdopciones();
+            }
+        });
+
     }
 
     private void cargarMascotasDisponibles() {

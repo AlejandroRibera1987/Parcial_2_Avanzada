@@ -26,6 +26,7 @@ public class AdopcionView extends JFrame {
     private JButton btnProcesarAdopcion;
     private JButton btnLimpiar;
     private JButton btnActualizar;
+    private JButton btnHistorial;
 
     private List<Mascota> mascotasDisponibles;
 
@@ -70,6 +71,7 @@ public class AdopcionView extends JFrame {
         btnProcesarAdopcion = new JButton("Procesar Adopcion");
         btnLimpiar = new JButton("Borrar Datos");
         btnActualizar = new JButton("Actualizar");
+        btnHistorial = new JButton("Ver Historial");
     }
 
     private void setupLayout() {
@@ -114,6 +116,7 @@ public class AdopcionView extends JFrame {
         JPanel bottomPanel = new JPanel(new FlowLayout());
         bottomPanel.add(btnProcesarAdopcion);
         bottomPanel.add(btnLimpiar);
+        bottomPanel.add(btnHistorial);
         add(bottomPanel, BorderLayout.SOUTH);
     }
 
@@ -179,7 +182,7 @@ public class AdopcionView extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    // Métodos públicos
+
     public void mostrarEmpleadoLogueado(Empleado empleado) {
         lblEmpleadoLogueado.setText("Empleado: " + empleado.getNombre() + " " + empleado.getApellido());
     }
@@ -255,4 +258,5 @@ public class AdopcionView extends JFrame {
     public JButton getBtnActualizar() { return btnActualizar; }
     public JTable getTableMascotas() { return tableMascotas; }
     public List<Mascota> getMascotasDisponibles() { return mascotasDisponibles; }
+    public JButton getBtnHistorial() { return btnHistorial; }
 }
